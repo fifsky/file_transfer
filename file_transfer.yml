@@ -1,0 +1,11 @@
+upload_dir: "/tmp"
+# 用于生成下载地址
+url_prefix: "http://localhost:8080/download"
+
+basic_auth:
+  # enable basic_auth
+  enabled: false
+  username: "vearne"
+  password: "helloworld"
+
+
