@@ -10,6 +10,7 @@ import (
 )
 
 var (
+	ListenAddress   string
 	UploadDir       string
 	URLPrefix       string
 	EnableBasicAuth bool
@@ -27,6 +28,8 @@ func init() {
 		log.Println("can't read config file")
 		panic(err)
 	}
+
+	ListenAddress = viper.GetString("listen_address")
 	UploadDir = viper.GetString("upload_dir")
 	URLPrefix = viper.GetString("url_prefix")
 	EnableBasicAuth = viper.GetBool("basic_auth.enabled")
@@ -59,5 +62,5 @@ func main() {
 	}
 	router.StaticFS("/download", http.Dir(UploadDir))
 	router.POST("/upload", DealUpload)
-	router.Run(":8080")
+	router.Run(ListenAddress)
 }
